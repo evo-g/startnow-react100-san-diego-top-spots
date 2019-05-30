@@ -7,12 +7,11 @@ class App extends Component {
       super(props);
 
       this.state = {
-          topspots: []
+        topspots: []
       };
   }
   componentWillMount() {
-    axios
-    .get('https://origin-top-spots-api.herokuapp.com/api/topspots')
+    axios.get('https://origin-top-spots-api.herokuapp.com/api/topspots')
     .then(response => response.data)
     .then(topspots => this.setState({ topspots }));
   }
@@ -22,11 +21,12 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <div className='container'>
-          <div className='jumbotron jumbotron-fluid padding-top-4'>
-            <h4 className='display-4'>San Diego Top Spots</h4>
+        <div className='container text-center text-white '>
+          <div className='jumbotron jumbotron-fluid rounded mb-2 bg-info'>
+            <h2 className='bold'>San Diego Top Spots</h2>
             <p className='lead'>A list of the top 30 places to see in San Diego, California </p>
           </div>
+          <div className='col-md-12'>
             {
               this.state.topspots.map(topspot => (
               <TopSpot
@@ -37,11 +37,11 @@ class App extends Component {
               />
               ))
             }
+          </div>
         </div>
       </div>
     );
   }
 }
-
 
 export default App;

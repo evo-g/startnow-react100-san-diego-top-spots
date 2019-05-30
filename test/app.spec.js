@@ -24,11 +24,11 @@ describe('top spots', function () {
     nightmare = new Nightmare();
   });
 
-  it('should show a list of topspots as bootstrap wells', () =>
+  it('should show a list of topspots as bootstrap cards', () =>
     nightmare
     .goto(url)
-    .wait('div.well')
-    .evaluate(() => document.querySelectorAll('div.well').length)
+    .wait('div.card')
+    .evaluate(() => document.querySelectorAll('div.card').length)
     .end()
     .then((numberOfTodoComponents) => {
       expect(numberOfTodoComponents).to.equal(30);
@@ -38,8 +38,8 @@ describe('top spots', function () {
   it('should show topspot name in each bootstrap well using a <h4> element.', () =>
     nightmare
     .goto(url)
-    .wait('div.well')
-    .evaluate(() => Array.prototype.slice.call(document.querySelectorAll('div.well>h4')).map(el => el.innerHTML))
+    .wait('div.card')
+    .evaluate(() => Array.prototype.slice.call(document.querySelectorAll('div.card-header>h4')).map(el => el.innerHTML))
     .end()
     .then((titles) => {
       expect(titles.length).to.equal(30);
@@ -47,11 +47,11 @@ describe('top spots', function () {
     })
   ).timeout(nightmareTimeout);
 
-  it('should show topspot description in each bootstrap well using a <p> element.', () =>
+  it('should show topspot description in each bootstrap card using a <p> element.', () =>
     nightmare
     .goto(url)
-    .wait('div.well')
-    .evaluate(() => Array.prototype.slice.call(document.querySelectorAll('div.well>p')).map(el => el.innerHTML))
+    .wait('div.card')
+    .evaluate(() => Array.prototype.slice.call(document.querySelectorAll('div.card-body>p')).map(el => el.innerHTML))
     .end()
     .then((descriptions) => {
       expect(descriptions.length).to.equal(30);
@@ -59,11 +59,11 @@ describe('top spots', function () {
     })
   ).timeout(nightmareTimeout);
 
-  it('should show a link in each bootstrap well using an <a> element styled as a bootstrap button.', () =>
+  it('should show a link in each bootstrap card using an <a> element styled as a bootstrap button.', () =>
     nightmare
     .goto(url)
-    .wait('div.well')
-    .evaluate(() => Array.prototype.slice.call(document.querySelectorAll('div.well>a')).map(el => el.attributes.href.nodeValue))
+    .wait('div.card')
+    .evaluate(() => Array.prototype.slice.call(document.querySelectorAll('div.card-body>a')).map(el => el.attributes.href.nodeValue))
     .end()
     .then((links) => {
       expect(links.length).to.equal(30);
